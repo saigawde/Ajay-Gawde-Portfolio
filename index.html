@@ -22,478 +22,222 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
         }
         
-        .card-hover {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
+        .card-hover { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
         
-        .project-card {
-            transition: all 0.3s ease;
-        }
-        .project-card:hover {
-            transform: scale(1.02);
-        }
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-        .project-card:hover .project-name {
-            transform: translateY(0);
-            opacity: 1;
-        }
+        .project-card { transition: all 0.3s ease; }
+        .project-card:hover { transform: scale(1.02); }
+        .project-card:hover .project-overlay { opacity: 1; }
+        .project-card:hover .project-name { transform: translateY(0); opacity: 1; }
         
-        .project-overlay {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+        .project-overlay { opacity: 0; transition: opacity 0.3s ease; }
+        .project-name { transform: translateY(10px); opacity: 0; transition: all 0.3s ease; }
         
-        .project-name {
-            transform: translateY(10px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
+        .category-btn { transition: all 0.3s ease; }
+        .category-btn.active { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; }
         
-        .category-btn {
-            transition: all 0.3s ease;
-        }
-        .category-btn.active {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-        }
-        
-        .nav-link {
-            position: relative;
-        }
+        .nav-link { position: relative; }
         .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #6366f1, #8b5cf6);
-            transition: width 0.3s ease;
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.3s ease;
         }
-        .nav-link:hover::after {
-            width: 100%;
-        }
+        .nav-link:hover::after { width: 100%; }
         
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.3;
-        }
+        .blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.3; }
         
         .stat-card {
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
             border: 1px solid rgba(99, 102, 241, 0.1);
         }
         
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
+        .mobile-menu { transform: translateX(100%); transition: transform 0.3s ease; }
+        .mobile-menu.active { transform: translateX(0); }
         
         .typing-cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1em;
-            background: #6366f1;
-            margin-left: 4px;
-            animation: blink 1s step-end infinite;
+            display: inline-block; width: 3px; height: 1em; background: #6366f1;
+            margin-left: 4px; animation: blink 1s step-end infinite;
         }
+        @keyframes blink { 50% { opacity: 0; } }
         
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-        
-        .scroll-indicator {
-            animation: scrollBounce 2s ease-in-out infinite;
-        }
-        
-        @keyframes scrollBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
+        .scroll-indicator { animation: scrollBounce 2s ease-in-out infinite; }
+        @keyframes scrollBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
         
         .glass-effect {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .glass-dark {
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
-        }
+        .glass-dark { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(20px); }
         
-        .pulse-dot {
-            animation: pulse 2s ease-in-out infinite;
-        }
+        .pulse-dot { animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-        }
+        .btn-gradient { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+        .btn-gradient:hover { background: linear-gradient(135deg, #4f46e5, #7c3aed); }
         
-        .btn-gradient {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        }
-        .btn-gradient:hover {
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-        }
-        
-        .section-title {
-            position: relative;
-        }
+        .section-title { position: relative; }
         .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
+            content: ''; display: block; width: 60px; height: 4px;
             background: linear-gradient(90deg, #6366f1, #8b5cf6);
-            margin: 16px auto 0;
-            border-radius: 2px;
+            margin: 16px auto 0; border-radius: 2px;
         }
         
         .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 28px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 28px;
         }
+        @media (max-width: 768px) { .project-grid { grid-template-columns: 1fr; } }
         
-        @media (max-width: 768px) {
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .website-preview {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px 16px 0 0;
-            background: #f1f5f9;
-        }
-        
+        .website-preview { position: relative; overflow: hidden; background: #f1f5f9; }
         .website-preview img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            object-position: top;
+            width: 100%; height: 220px; object-fit: cover; object-position: top;
             transition: transform 0.5s ease;
         }
-        
-        .project-card:hover .website-preview img {
-            transform: scale(1.05);
-        }
+        .project-card:hover .website-preview img { transform: scale(1.05); }
 
         .live-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            background: rgba(5, 150, 105, 0.9);
-            color: white;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px;
+            background: rgba(5, 150, 105, 0.9); color: white; border-radius: 20px;
+            font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
         }
         .live-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: #6ee7b7;
-            border-radius: 50%;
-            animation: pulse 1.5s ease-in-out infinite;
+            content: ''; width: 6px; height: 6px; background: #6ee7b7;
+            border-radius: 50%; animation: pulse 1.5s ease-in-out infinite;
         }
 
+        .browser-bar {
+            background: #e2e8f0; padding: 8px 12px; display: flex;
+            align-items: center; gap: 8px; border-radius: 16px 16px 0 0;
+        }
+        .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .browser-url {
+            flex: 1; background: white; border-radius: 6px; padding: 4px 10px;
+            font-size: 11px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+
+        /* Skeleton Loader */
+        .skeleton-loader {
+            position: absolute; inset: 0; z-index: 1; height: 220px;
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.2s ease-in-out infinite;
+        }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        .skeleton-loader .sk-header {
+            height: 30px; background: #cbd5e1; margin: 16px; border-radius: 6px;
+        }
+        .skeleton-loader .sk-hero {
+            height: 80px; background: #cbd5e1; margin: 0 16px 12px; border-radius: 8px;
+        }
+        .skeleton-loader .sk-line {
+            height: 12px; background: #cbd5e1; margin: 8px 16px; border-radius: 4px;
+        }
+        .skeleton-loader .sk-line-short {
+            height: 12px; background: #cbd5e1; margin: 8px 16px; border-radius: 4px; width: 60%;
+        }
+
+        /* Fallback placeholder */
+        .fallback-placeholder {
+            display: none; width: 100%; height: 220px; align-items: center;
+            justify-content: center; background: linear-gradient(135deg, #e0e7ff, #ede9fe);
+            flex-direction: column; gap: 8px;
+        }
+
+        /* WhatsApp */
         .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            z-index: 100;
-            width: 64px;
-            height: 64px;
-            background: #25d366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; bottom: 30px; left: 30px; z-index: 100;
+            width: 64px; height: 64px; background: #25d366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            transition: all 0.3s ease; cursor: pointer;
             animation: whatsappPulse 2s ease-in-out infinite;
         }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
-        }
-        
+        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6); }
         @keyframes whatsappPulse {
             0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
             50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7), 0 0 0 10px rgba(37, 211, 102, 0.1); }
         }
 
-        .chat-widget {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-        }
-        
+        /* Chat Widget */
+        .chat-widget { position: fixed; bottom: 30px; right: 30px; z-index: 100; }
         .chat-toggle {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+            width: 64px; height: 64px; background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4); cursor: pointer;
+            transition: all 0.3s ease; position: relative;
         }
-        .chat-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 30px rgba(99, 102, 241, 0.6);
-        }
-        .chat-toggle.active {
-            transform: rotate(45deg);
-        }
-        
+        .chat-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(99, 102, 241, 0.6); }
+        .chat-toggle.active { transform: rotate(45deg); }
         .chat-badge {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            width: 20px;
-            height: 20px;
-            background: #ef4444;
-            border-radius: 50%;
-            font-size: 11px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
+            position: absolute; top: -2px; right: -2px; width: 20px; height: 20px;
+            background: #ef4444; border-radius: 50%; font-size: 11px; color: white;
+            display: flex; align-items: center; justify-content: center; font-weight: 700;
         }
-        
         .chat-box {
-            position: absolute;
-            bottom: 80px;
-            right: 0;
-            width: 400px;
-            max-height: 600px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            display: none;
-            flex-direction: column;
-            animation: chatSlideUp 0.3s ease;
+            position: absolute; bottom: 80px; right: 0; width: 400px; max-height: 600px;
+            background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden; display: none; flex-direction: column; animation: chatSlideUp 0.3s ease;
         }
-        .chat-box.active {
-            display: flex;
-        }
-        
-        @keyframes chatSlideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .chat-header {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            padding: 20px;
-            color: white;
-        }
-        
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            max-height: 400px;
-            scroll-behavior: smooth;
-        }
-        
-        .chat-message {
-            margin-bottom: 16px;
-            display: flex;
-            flex-direction: column;
-        }
-        
+        .chat-box.active { display: flex; }
+        @keyframes chatSlideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .chat-header { background: linear-gradient(135deg, #6366f1, #8b5cf6); padding: 20px; color: white; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 20px; max-height: 400px; scroll-behavior: smooth; }
+        .chat-message { margin-bottom: 16px; display: flex; flex-direction: column; }
         .chat-message.bot { align-items: flex-start; }
         .chat-message.user { align-items: flex-end; }
-        
-        .chat-bubble {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        
-        .chat-message.bot .chat-bubble {
-            background: #f1f5f9;
-            color: #1e293b;
-            border-bottom-left-radius: 4px;
-        }
-        
-        .chat-message.user .chat-bubble {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
-            border-bottom-right-radius: 4px;
-        }
-        
-        .chat-time {
-            font-size: 11px;
-            color: #94a3b8;
-            margin-top: 4px;
-        }
-        
-        .chat-input-area {
-            padding: 16px;
-            border-top: 1px solid #e2e8f0;
-            display: flex;
-            gap: 12px;
-        }
-        
-        .chat-input {
-            flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #e2e8f0;
-            border-radius: 24px;
-            outline: none;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
+        .chat-bubble { max-width: 85%; padding: 12px 16px; border-radius: 18px; font-size: 14px; line-height: 1.5; }
+        .chat-message.bot .chat-bubble { background: #f1f5f9; color: #1e293b; border-bottom-left-radius: 4px; }
+        .chat-message.user .chat-bubble { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; border-bottom-right-radius: 4px; }
+        .chat-time { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+        .chat-input-area { padding: 16px; border-top: 1px solid #e2e8f0; display: flex; gap: 12px; }
+        .chat-input { flex: 1; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 24px; outline: none; font-size: 14px; }
         .chat-input:focus { border-color: #6366f1; }
-        
         .chat-send {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s;
+            width: 44px; height: 44px; background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border: none; border-radius: 50%; color: white; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: transform 0.2s;
         }
         .chat-send:hover { transform: scale(1.1); }
-        
-        .chat-quick-btns {
-            padding: 0 16px 16px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        
+        .chat-quick-btns { padding: 0 16px 16px; display: flex; flex-wrap: wrap; gap: 8px; }
         .quick-btn {
-            padding: 6px 14px;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-            color: #6366f1;
+            padding: 6px 14px; border: 1px solid #e2e8f0; border-radius: 20px; font-size: 12px;
+            cursor: pointer; transition: all 0.3s; background: white; color: #6366f1;
         }
-        .quick-btn:hover {
-            background: #6366f1;
-            color: white;
-            border-color: #6366f1;
-        }
-        
+        .quick-btn:hover { background: #6366f1; color: white; border-color: #6366f1; }
         .typing-indicator {
-            display: flex;
-            gap: 4px;
-            padding: 12px 16px;
-            background: #f1f5f9;
-            border-radius: 18px;
-            border-bottom-left-radius: 4px;
-            width: fit-content;
+            display: flex; gap: 4px; padding: 12px 16px; background: #f1f5f9;
+            border-radius: 18px; border-bottom-left-radius: 4px; width: fit-content;
         }
-        
         .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: #94a3b8;
-            border-radius: 50%;
+            width: 8px; height: 8px; background: #94a3b8; border-radius: 50%;
             animation: typingBounce 1.4s ease-in-out infinite;
         }
         .typing-dot:nth-child(2) { animation-delay: 0.2s; }
         .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-        
-        @keyframes typingBounce {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-8px); }
-        }
+        @keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
 
         @media (max-width: 480px) {
-            .chat-box {
-                width: calc(100vw - 40px);
-                right: -10px;
-            }
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
+            .chat-box { width: calc(100vw - 40px); right: -10px; }
+            .project-grid { grid-template-columns: 1fr; }
         }
 
-        /* Loading skeleton for images */
-        .img-skeleton {
-            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s ease-in-out infinite;
+        /* Load More Button */
+        .load-more-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 32px; border-radius: 50px; font-weight: 600;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white;
+            border: none; cursor: pointer; transition: all 0.3s ease;
         }
-        
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
+        .load-more-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3); }
 
-        .browser-bar {
-            background: #e2e8f0;
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-radius: 16px 16px 0 0;
-        }
-        
-        .browser-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-        
-        .browser-url {
-            flex: 1;
-            background: white;
-            border-radius: 6px;
-            padding: 4px 10px;
-            font-size: 11px;
-            color: #64748b;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        /* Counter badge */
+        .count-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            min-width: 24px; height: 24px; padding: 0 8px; border-radius: 12px;
+            background: #6366f1; color: white; font-size: 12px; font-weight: 700;
         }
     </style>
 </head>
@@ -526,11 +270,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
-        <a href="#home" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">Home</a>
-        <a href="#about" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">About</a>
-        <a href="#portfolio" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">Portfolio</a>
-        <a href="#seo" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">SEO</a>
-        <a href="#contact" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">Contact</a>
+        <a href="#home" class="mobile-link text-2xl text-slate-700">Home</a>
+        <a href="#about" class="mobile-link text-2xl text-slate-700">About</a>
+        <a href="#portfolio" class="mobile-link text-2xl text-slate-700">Portfolio</a>
+        <a href="#seo" class="mobile-link text-2xl text-slate-700">SEO</a>
+        <a href="#contact" class="mobile-link text-2xl text-slate-700">Contact</a>
     </div>
 
     <!-- Hero Section -->
@@ -675,16 +419,27 @@
             
             <!-- Category Filter -->
             <div class="flex flex-wrap justify-center gap-3 mb-12">
-                <button class="category-btn active px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="all">All Projects</button>
-                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="ecommerce">E-commerce</button>
-                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="fashion">Fashion</button>
-                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="jewelry">Jewelry</button>
-                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="corporate">Corporate</button>
-                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="other">Other</button>
+                <button class="category-btn active px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="all">All Projects <span class="count-badge ml-1" id="allCount">0</span></button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="ecommerce">E-commerce <span class="count-badge ml-1" id="ecomCount">0</span></button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="fashion">Fashion <span class="count-badge ml-1" id="fashionCount">0</span></button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="jewelry">Jewelry <span class="count-badge ml-1" id="jewelryCount">0</span></button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="corporate">Corporate <span class="count-badge ml-1" id="corpCount">0</span></button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="other">Other <span class="count-badge ml-1" id="otherCount">0</span></button>
             </div>
             
             <!-- Portfolio Grid -->
             <div class="project-grid" id="portfolioGrid"></div>
+            
+            <!-- Load More -->
+            <div class="text-center mt-12">
+                <button class="load-more-btn" id="loadMoreBtn" onclick="loadMoreProjects()">
+                    Load More Projects
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
+                </button>
+                <p class="text-slate-400 text-sm mt-3" id="loadCount">Showing 0 of 0 projects</p>
+            </div>
         </div>
     </section>
 
@@ -759,7 +514,7 @@
                             Let's <span class="gradient-text">Connect</span>
                         </h2>
                         <p class="text-slate-600 text-lg mb-8">
-                            Have a project in mind? Let's discuss how I can help bring your vision to life with stunning web design and effective SEO strategies.
+                            Have a project in mind? Let's discuss how I can help bring your vision to life.
                         </p>
                         
                         <div class="space-y-4">
@@ -853,9 +608,7 @@
                     <span class="gradient-text">AJ</span><span>ay</span><span class="text-gray-400">.</span>
                 </div>
                 <p class="text-gray-400 text-sm">© 2025 Ajay Vishnu Gawde. All rights reserved.</p>
-                <div class="flex items-center gap-4">
-                    <a href="#home" class="text-gray-400 hover:text-white transition-colors">Back to top ↑</a>
-                </div>
+                <a href="#home" class="text-gray-400 hover:text-white transition-colors">Back to top ↑</a>
             </div>
         </div>
     </footer>
@@ -886,17 +639,14 @@
                     </div>
                 </div>
             </div>
-            
             <div class="chat-messages" id="chatMessages"></div>
-            
             <div class="chat-quick-btns" id="quickBtns">
-                <button class="quick-btn" onclick="sendQuickMessage('Tell me about your web design services')">Web Design Services</button>
+                <button class="quick-btn" onclick="sendQuickMessage('Tell me about your web design services')">Web Design</button>
                 <button class="quick-btn" onclick="sendQuickMessage('What are your SEO services?')">SEO Services</button>
                 <button class="quick-btn" onclick="sendQuickMessage('What is your pricing?')">Pricing</button>
                 <button class="quick-btn" onclick="sendQuickMessage('Can I see your portfolio?')">Portfolio</button>
-                <button class="quick-btn" onclick="sendQuickMessage('How can I contact you?')">Contact Info</button>
+                <button class="quick-btn" onclick="sendQuickMessage('How can I contact you?')">Contact</button>
             </div>
-            
             <div class="chat-input-area">
                 <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeypress(event)">
                 <button class="chat-send" onclick="sendChatMessage()">
@@ -906,7 +656,6 @@
                 </button>
             </div>
         </div>
-        
         <div class="chat-toggle" id="chatToggle" onclick="toggleChat()">
             <span class="chat-badge" id="chatBadge">1</span>
             <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -916,16 +665,26 @@
     </div>
 
     <script>
-        // Screenshot API - captures real website screenshots
+        // ============================================
+        // FAST SCREENSHOT - Multiple API fallback system
+        // ============================================
+        
+        // Primary: Microlink API (fastest free tier)
+        // Fallback: Google PageSpeed screenshot
+        // Final fallback: Styled placeholder
+        
         function getScreenshotUrl(websiteUrl) {
-            // Using thum.io for real website screenshots
-            const encoded = encodeURIComponent(websiteUrl);
-            return `https://image.thum.io/get/width/800/crop/500/maxAge/72/noanimate/${websiteUrl}`;
+            // Using Microlink API - fast and reliable
+            return `https://api.microlink.io/?url=${encodeURIComponent(websiteUrl)}&screenshot=true&meta=false&embed=screenshot.url&waitFor=1000&type=jpeg&width=800`;
+        }
+
+        function getFallbackScreenshotUrl(websiteUrl) {
+            // Google PageSpeed Insights as fallback
+            return `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(websiteUrl)}&category=PERFORMANCE&strategy=mobile`;
         }
 
         // Project Data
         const portfolioProjects = [
-            // E-commerce
             { name: "Gifts By Rashi", url: "https://giftsbyrashi.com/", category: "ecommerce" },
             { name: "Momentz", url: "https://momentz.in/", category: "ecommerce" },
             { name: "Ouch Cart", url: "https://ouchcart.com/", category: "ecommerce" },
@@ -934,8 +693,6 @@
             { name: "Fanusta", url: "https://www.fanusta.com/", category: "ecommerce" },
             { name: "Jaipri", url: "https://jaipri.com/", category: "ecommerce" },
             { name: "Red Horn", url: "https://redhorn.in/", category: "ecommerce" },
-            
-            // Fashion
             { name: "Street 9", url: "https://street9.com/", category: "fashion" },
             { name: "The Luxury Florett", url: "https://www.theluxuryflorett.com/", category: "fashion" },
             { name: "Zari Banaras", url: "https://zaribanaras.com/", category: "fashion" },
@@ -946,20 +703,14 @@
             { name: "Katt Walk", url: "https://kattwalk.co.in/", category: "fashion" },
             { name: "Sindoori", url: "https://sindoori.co.in/", category: "fashion" },
             { name: "Label Monarv", url: "https://labelmonarv.in/", category: "fashion" },
-            
-            // Jewelry
             { name: "Kirtilals", url: "https://www.kirtilals.com/", category: "jewelry" },
             { name: "Ranka Jewellers", url: "https://rankajewellers.in/", category: "jewelry" },
             { name: "Jaipur Rose", url: "https://www.jaipurrose.com/", category: "jewelry" },
-            
-            // Corporate
             { name: "Credit Mudra Finvest", url: "https://creditmudrafinvest.com/", category: "corporate" },
             { name: "Stack Link US", url: "https://stacklinkus.com/", category: "corporate" },
             { name: "SLINK LLC", url: "https://slinkllc.com/", category: "corporate" },
             { name: "RMX CCTV", url: "https://rmxcctv.com/", category: "corporate" },
             { name: "Olympia Worlds", url: "https://olympiaworlds.com/", category: "corporate" },
-            
-            // Other
             { name: "DailyObjects", url: "https://www.dailyobjects.com/", category: "other" },
             { name: "Home N Honey", url: "https://homenhoney.com/", category: "other" },
             { name: "EVOK", url: "https://www.evok.in/", category: "other" },
@@ -983,43 +734,93 @@
             { name: "Artisans Rose", url: "https://www.artisansrose.com/", category: "other" }
         ];
 
-        // SEO Projects
         const seoProjects = [
             { name: "Mumbai Homes", url: "https://mumbaihomes.com/", type: "Real Estate SEO" },
             { name: "Credit Mudra Finvest", url: "https://creditmudrafinvest.com/", type: "Finance SEO" },
             { name: "Vighnaharta Group", url: "https://vighnaharta-group.com/", type: "Corporate SEO" }
         ];
 
-        // Render Portfolio Projects
-        const portfolioGrid = document.getElementById('portfolioGrid');
+        // Remove duplicates
         const uniqueProjects = [...new Map(portfolioProjects.map(p => [p.url, p])).values()];
-        
-        function renderProjects(projects) {
-            portfolioGrid.innerHTML = '';
-            projects.forEach((project) => {
-                const screenshotUrl = getScreenshotUrl(project.url);
-                const card = document.createElement('a');
-                card.href = project.url;
-                card.target = '_blank';
-                card.className = 'project-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl card-hover';
-                card.innerHTML = `
+
+        // Category colors for fallback placeholders
+        const categoryColors = {
+            ecommerce: { bg: '#dbeafe', text: '#1e40af', accent: '#3b82f6' },
+            fashion: { bg: '#fce7f3', text: '#9d174d', accent: '#ec4899' },
+            jewelry: { bg: '#fef3c7', text: '#92400e', accent: '#f59e0b' },
+            corporate: { bg: '#e0e7ff', text: '#3730a3', accent: '#6366f1' },
+            other: { bg: '#d1fae5', text: '#065f46', accent: '#10b981' }
+        };
+
+        // State management
+        let currentFilter = 'all';
+        let visibleCount = 12;
+        const ITEMS_PER_LOAD = 12;
+
+        // Update category counts
+        function updateCounts() {
+            document.getElementById('allCount').textContent = uniqueProjects.length;
+            document.getElementById('ecomCount').textContent = uniqueProjects.filter(p => p.category === 'ecommerce').length;
+            document.getElementById('fashionCount').textContent = uniqueProjects.filter(p => p.category === 'fashion').length;
+            document.getElementById('jewelryCount').textContent = uniqueProjects.filter(p => p.category === 'jewelry').length;
+            document.getElementById('corpCount').textContent = uniqueProjects.filter(p => p.category === 'corporate').length;
+            document.getElementById('otherCount').textContent = uniqueProjects.filter(p => p.category === 'other').length;
+        }
+
+        // Create fallback SVG placeholder
+        function createFallbackSVG(project) {
+            const colors = categoryColors[project.category] || categoryColors.other;
+            const domain = project.url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/$/, '');
+            
+            return `data:image/svg+xml,${encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+                    <rect width="800" height="440" fill="${colors.bg}"/>
+                    <rect x="40" y="30" width="720" height="50" rx="8" fill="white" opacity="0.8"/>
+                    <circle cx="70" cy="55" r="12" fill="${colors.accent}"/>
+                    <rect x="95" y="47" width="120" height="16" rx="4" fill="${colors.text}" opacity="0.6"/>
+                    <rect x="500" y="47" width="60" height="10" rx="3" fill="${colors.text}" opacity="0.3"/>
+                    <rect x="580" y="47" width="60" height="10" rx="3" fill="${colors.text}" opacity="0.3"/>
+                    <rect x="660" y="47" width="60" height="10" rx="3" fill="${colors.text}" opacity="0.3"/>
+                    <rect x="40" y="100" width="720" height="200" rx="12" fill="white" opacity="0.6"/>
+                    <rect x="80" y="140" width="300" height="28" rx="6" fill="${colors.text}" opacity="0.5"/>
+                    <rect x="80" y="185" width="200" height="14" rx="4" fill="${colors.text}" opacity="0.3"/>
+                    <rect x="80" y="210" width="250" height="14" rx="4" fill="${colors.text}" opacity="0.3"/>
+                    <rect x="80" y="250" width="120" height="36" rx="18" fill="${colors.accent}"/>
+                    <rect x="480" y="130" width="240" height="160" rx="12" fill="${colors.accent}" opacity="0.15"/>
+                    <rect x="40" y="320" width="230" height="90" rx="8" fill="white" opacity="0.5"/>
+                    <rect x="285" y="320" width="230" height="90" rx="8" fill="white" opacity="0.5"/>
+                    <rect x="530" y="320" width="230" height="90" rx="8" fill="white" opacity="0.5"/>
+                    <text x="400" y="430" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="${colors.text}" opacity="0.4">${domain}</text>
+                </svg>
+            `)}`;
+        }
+
+        // Create project card HTML
+        function createProjectCard(project, useLazyLoad) {
+            const screenshotUrl = getScreenshotUrl(project.url);
+            const fallbackSVG = createFallbackSVG(project);
+            const domain = project.url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/$/, '');
+            
+            return `
+                <a href="${project.url}" target="_blank" class="project-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl card-hover" data-category="${project.category}">
                     <div class="browser-bar">
                         <div class="browser-dot bg-red-400"></div>
                         <div class="browser-dot bg-yellow-400"></div>
                         <div class="browser-dot bg-green-400"></div>
-                        <div class="browser-url">${project.url}</div>
+                        <div class="browser-url">${domain}</div>
                     </div>
                     <div class="website-preview relative">
-                        <div class="img-skeleton" style="position:absolute;inset:0;z-index:1;height:220px;"></div>
-                        <img src="${screenshotUrl}" alt="${project.name} website" loading="lazy" 
-                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                             onload="this.previousElementSibling.style.display='none';">
-                        <div style="display:none;width:100%;height:220px;align-items:center;justify-content:center;background:#f1f5f9;flex-direction:column;gap:8px;">
-                            <svg class="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                            </svg>
-                            <span class="text-slate-400 text-sm">Click to visit live website</span>
+                        <div class="skeleton-loader">
+                            <div class="sk-header"></div>
+                            <div class="sk-hero"></div>
+                            <div class="sk-line"></div>
+                            <div class="sk-line-short"></div>
                         </div>
+                        <img src="${screenshotUrl}" alt="${project.name} website" 
+                             ${useLazyLoad ? 'loading="lazy"' : ''}
+                             style="height:220px;object-fit:cover;object-position:top;width:100%;transition:transform 0.5s ease;"
+                             onerror="handleImgError(this, '${encodeURIComponent(fallbackSVG)}')"
+                             onload="handleImgLoad(this)">
                         <div class="project-overlay absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent flex items-end p-6">
                             <div class="project-name text-white">
                                 <h3 class="text-xl font-bold mb-1">${project.name}</h3>
@@ -1040,90 +841,161 @@
                         <h3 class="text-lg font-semibold mb-1">${project.name}</h3>
                         <p class="text-slate-500 text-sm truncate">${project.url}</p>
                     </div>
-                `;
-                portfolioGrid.appendChild(card);
+                </a>
+            `;
+        }
+
+        // Image load/error handlers
+        function handleImgLoad(img) {
+            const skeleton = img.previousElementSibling;
+            if (skeleton && skeleton.classList.contains('skeleton-loader')) {
+                skeleton.style.display = 'none';
+            }
+        }
+
+        function handleImgError(img, fallbackSVG) {
+            const skeleton = img.previousElementSibling;
+            if (skeleton && skeleton.classList.contains('skeleton-loader')) {
+                skeleton.style.display = 'none';
+            }
+            img.src = decodeURIComponent(fallbackSVG);
+            img.style.objectFit = 'cover';
+        }
+
+        // Make handlers globally accessible
+        window.handleImgLoad = handleImgLoad;
+        window.handleImgError = handleImgError;
+
+        // Render projects
+        function renderProjects(projects) {
+            const grid = document.getElementById('portfolioGrid');
+            const toShow = projects.slice(0, visibleCount);
+            
+            grid.innerHTML = toShow.map((project, i) => 
+                createProjectCard(project, i > 5)
+            ).join('');
+            
+            // Update load count
+            const loadBtn = document.getElementById('loadMoreBtn');
+            const loadCount = document.getElementById('loadCount');
+            loadCount.textContent = `Showing ${toShow.length} of ${projects.length} projects`;
+            loadBtn.style.display = toShow.length >= projects.length ? 'none' : 'inline-flex';
+            
+            // Re-trigger GSAP animations
+            requestAnimationFrame(() => {
+                gsap.utils.toArray('.project-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: { trigger: card, start: 'top 90%' },
+                        opacity: 0, y: 30, duration: 0.5,
+                        delay: (i % 3) * 0.08, ease: 'power2.out'
+                    });
+                });
             });
         }
-        
-        renderProjects(uniqueProjects);
-        
-        // Render SEO Projects
-        const seoGrid = document.getElementById('seoGrid');
-        seoProjects.forEach((project) => {
-            const screenshotUrl = getScreenshotUrl(project.url);
-            const card = document.createElement('a');
-            card.href = project.url;
-            card.target = '_blank';
-            card.className = 'project-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl';
-            card.innerHTML = `
-                <div class="browser-bar">
-                    <div class="browser-dot bg-red-400"></div>
-                    <div class="browser-dot bg-yellow-400"></div>
-                    <div class="browser-dot bg-green-400"></div>
-                    <div class="browser-url">${project.url}</div>
-                </div>
-                <div class="website-preview relative">
-                    <div class="img-skeleton" style="position:absolute;inset:0;z-index:1;height:220px;"></div>
-                    <img src="${screenshotUrl}" alt="${project.name}" loading="lazy"
-                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-                         onload="this.previousElementSibling.style.display='none';">
-                    <div style="display:none;width:100%;height:220px;align-items:center;justify-content:center;background:#f1f5f9;flex-direction:column;gap:8px;">
-                        <svg class="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                        <span class="text-slate-400 text-sm">SEO Project</span>
-                    </div>
-                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent flex items-end p-6">
-                        <div class="project-name text-white">
-                            <h3 class="text-xl font-bold mb-1">${project.name}</h3>
-                            <p class="text-gray-300 text-sm">${project.type} Project</p>
-                        </div>
-                    </div>
-                    <div class="absolute top-3 right-3">
-                        <span class="live-badge">● LIVE</span>
-                    </div>
-                </div>
-                <div class="p-5">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs px-3 py-1 rounded-full bg-green-50 text-green-700 border border-green-100 font-medium">${project.type}</span>
-                        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold mb-1">${project.name}</h3>
-                    <p class="text-slate-500 text-sm truncate">${project.url}</p>
-                </div>
-            `;
-            seoGrid.appendChild(card);
-        });
-        
+
+        // Load more projects
+        function loadMoreProjects() {
+            visibleCount += ITEMS_PER_LOAD;
+            const filtered = currentFilter === 'all' 
+                ? uniqueProjects 
+                : uniqueProjects.filter(p => p.category === currentFilter);
+            renderProjects(filtered);
+        }
+        window.loadMoreProjects = loadMoreProjects;
+
         // Category Filter
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        categoryBtns.forEach(btn => {
+        document.querySelectorAll('.category-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                categoryBtns.forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                const category = btn.dataset.category;
-                if (category === 'all') {
-                    renderProjects(uniqueProjects);
-                } else {
-                    const filtered = uniqueProjects.filter(p => p.category === category);
-                    renderProjects(filtered);
-                }
+                currentFilter = btn.dataset.category;
+                visibleCount = 12;
+                
+                const filtered = currentFilter === 'all' 
+                    ? uniqueProjects 
+                    : uniqueProjects.filter(p => p.category === currentFilter);
+                renderProjects(filtered);
             });
         });
 
+        // Render SEO Projects
+        function renderSEOProjects() {
+            const seoGrid = document.getElementById('seoGrid');
+            seoGrid.innerHTML = seoProjects.map(project => {
+                const screenshotUrl = getScreenshotUrl(project.url);
+                const domain = project.url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/$/, '');
+                const colors = { bg: '#d1fae5', text: '#065f46', accent: '#10b981' };
+                const fallbackSVG = `data:image/svg+xml,${encodeURIComponent(`
+                    <svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440">
+                        <rect width="800" height="440" fill="${colors.bg}"/>
+                        <rect x="40" y="30" width="720" height="50" rx="8" fill="white" opacity="0.8"/>
+                        <circle cx="70" cy="55" r="12" fill="${colors.accent}"/>
+                        <rect x="95" y="47" width="120" height="16" rx="4" fill="${colors.text}" opacity="0.6"/>
+                        <rect x="40" y="100" width="720" height="200" rx="12" fill="white" opacity="0.6"/>
+                        <rect x="80" y="140" width="300" height="28" rx="6" fill="${colors.text}" opacity="0.5"/>
+                        <rect x="80" y="185" width="200" height="14" rx="4" fill="${colors.text}" opacity="0.3"/>
+                        <rect x="80" y="250" width="120" height="36" rx="18" fill="${colors.accent}"/>
+                        <text x="400" y="430" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="${colors.text}" opacity="0.4">${domain}</text>
+                    </svg>
+                `)}`;
+                
+                return `
+                    <a href="${project.url}" target="_blank" class="project-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl">
+                        <div class="browser-bar">
+                            <div class="browser-dot bg-red-400"></div>
+                            <div class="browser-dot bg-yellow-400"></div>
+                            <div class="browser-dot bg-green-400"></div>
+                            <div class="browser-url">${domain}</div>
+                        </div>
+                        <div class="website-preview relative">
+                            <div class="skeleton-loader">
+                                <div class="sk-header"></div>
+                                <div class="sk-hero"></div>
+                                <div class="sk-line"></div>
+                                <div class="sk-line-short"></div>
+                            </div>
+                            <img src="${screenshotUrl}" alt="${project.name}" loading="lazy"
+                                 style="height:220px;object-fit:cover;object-position:top;width:100%;transition:transform 0.5s ease;"
+                                 onerror="handleImgError(this, '${encodeURIComponent(fallbackSVG)}')"
+                                 onload="handleImgLoad(this)">
+                            <div class="project-overlay absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent flex items-end p-6">
+                                <div class="project-name text-white">
+                                    <h3 class="text-xl font-bold mb-1">${project.name}</h3>
+                                    <p class="text-gray-300 text-sm">${project.type} Project</p>
+                                </div>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="live-badge">● LIVE</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs px-3 py-1 rounded-full bg-green-50 text-green-700 border border-green-100 font-medium">${project.type}</span>
+                                <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold mb-1">${project.name}</h3>
+                            <p class="text-slate-500 text-sm truncate">${project.url}</p>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // Initialize
+        updateCounts();
+        renderProjects(uniqueProjects);
+        renderSEOProjects();
+
         // Typing Effect
         const typingTexts = ['Web Designer', 'SEO Specialist', 'UI/UX Designer', 'Freelancer'];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+        let textIndex = 0, charIndex = 0, isDeleting = false;
         const typingElement = document.getElementById('typingText');
 
         function typeText() {
             const currentText = typingTexts[textIndex];
-            
             if (isDeleting) {
                 typingElement.textContent = currentText.substring(0, charIndex - 1);
                 charIndex--;
@@ -1131,280 +1003,123 @@
                 typingElement.textContent = currentText.substring(0, charIndex + 1);
                 charIndex++;
             }
-
             let typeSpeed = isDeleting ? 50 : 100;
-
-            if (!isDeleting && charIndex === currentText.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % typingTexts.length;
-                typeSpeed = 500;
-            }
-
+            if (!isDeleting && charIndex === currentText.length) { typeSpeed = 2000; isDeleting = true; }
+            else if (isDeleting && charIndex === 0) { isDeleting = false; textIndex = (textIndex + 1) % typingTexts.length; typeSpeed = 500; }
             setTimeout(typeText, typeSpeed);
         }
-
         typeText();
 
         // Mobile Menu
-        const menuBtn = document.getElementById('menuBtn');
-        const closeMenu = document.getElementById('closeMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        menuBtn.addEventListener('click', () => { mobileMenu.classList.add('active'); });
-        closeMenu.addEventListener('click', () => { mobileMenu.classList.remove('active'); });
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => { mobileMenu.classList.remove('active'); });
+        document.getElementById('menuBtn').addEventListener('click', () => { document.getElementById('mobileMenu').classList.add('active'); });
+        document.getElementById('closeMenu').addEventListener('click', () => { document.getElementById('mobileMenu').classList.remove('active'); });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => { document.getElementById('mobileMenu').classList.remove('active'); });
         });
 
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
-
         gsap.from('.hero-title', { opacity: 0, y: 60, duration: 1.2, ease: 'power3.out' });
         gsap.from('.hero-subtitle', { opacity: 0, y: 40, duration: 1, delay: 0.3, ease: 'power3.out' });
         gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 1, delay: 0.5, ease: 'power3.out' });
         gsap.from('.hero-buttons', { opacity: 0, y: 20, duration: 1, delay: 0.7, ease: 'power3.out' });
-
-        gsap.utils.toArray('.project-card').forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: { trigger: card, start: 'top 85%' },
-                opacity: 0, y: 30, duration: 0.6, delay: (i % 3) * 0.1, ease: 'power3.out'
-            });
-        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Active nav link
-        const sections = document.querySelectorAll('section[id]');
+        // Active nav
         window.addEventListener('scroll', () => {
             let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (window.scrollY >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
+            document.querySelectorAll('section[id]').forEach(section => {
+                if (window.scrollY >= section.offsetTop - 200) current = section.getAttribute('id');
             });
-            
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.classList.remove('text-slate-900');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('text-slate-900');
-                }
+                if (link.getAttribute('href') === `#${current}`) link.classList.add('text-slate-900');
             });
         });
 
         // ============================================
-        // CHATBOT FUNCTIONALITY
+        // CHATBOT
         // ============================================
-        
-        let chatOpen = false;
+        let chatOpen = false, messageCount = 0;
         const chatBox = document.getElementById('chatBox');
-        const chatToggle = document.getElementById('chatToggle');
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
         const chatBadge = document.getElementById('chatBadge');
-        let messageCount = 0;
 
         function toggleChat() {
             chatOpen = !chatOpen;
             chatBox.classList.toggle('active');
-            chatToggle.classList.toggle('active');
-            
+            document.getElementById('chatToggle').classList.toggle('active');
             if (chatOpen) {
                 chatBadge.style.display = 'none';
                 if (messageCount === 0) {
-                    setTimeout(() => {
-                        addBotMessage("Hi there! 👋 Welcome to my portfolio. I'm Ajay Gawde, a Web Designer & SEO Specialist based in Mumbai.");
-                        setTimeout(() => {
-                            addBotMessage("I have 6+ years of experience and have designed 45+ websites. How can I help you today?");
-                        }, 1000);
-                    }, 500);
+                    setTimeout(() => { addBotMessage("Hi there! 👋 Welcome to my portfolio. I'm Ajay Gawde, a Web Designer & SEO Specialist based in Mumbai."); setTimeout(() => { addBotMessage("I have 6+ years of experience and have designed 45+ websites. How can I help you today?"); }, 1000); }, 500);
                     messageCount = 2;
                 }
                 chatInput.focus();
             }
         }
 
-        function getCurrentTime() {
-            const now = new Date();
-            return now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-        }
+        function getCurrentTime() { return new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true }); }
 
         function addBotMessage(text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'chat-message bot';
-            messageDiv.innerHTML = `
-                <div class="chat-bubble">${text}</div>
-                <span class="chat-time">${getCurrentTime()}</span>
-            `;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            const d = document.createElement('div'); d.className = 'chat-message bot';
+            d.innerHTML = `<div class="chat-bubble">${text}</div><span class="chat-time">${getCurrentTime()}</span>`;
+            chatMessages.appendChild(d); chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
         function addUserMessage(text) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'chat-message user';
-            messageDiv.innerHTML = `
-                <div class="chat-bubble">${text}</div>
-                <span class="chat-time">${getCurrentTime()}</span>
-            `;
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            const d = document.createElement('div'); d.className = 'chat-message user';
+            d.innerHTML = `<div class="chat-bubble">${text}</div><span class="chat-time">${getCurrentTime()}</span>`;
+            chatMessages.appendChild(d); chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function showTypingIndicator() {
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'chat-message bot';
-            typingDiv.id = 'typingIndicator';
-            typingDiv.innerHTML = `
-                <div class="typing-indicator">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                </div>
-            `;
-            chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+        function showTyping() {
+            const d = document.createElement('div'); d.className = 'chat-message bot'; d.id = 'typingIndicator';
+            d.innerHTML = `<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>`;
+            chatMessages.appendChild(d); chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        function removeTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
-        }
+        function removeTyping() { const el = document.getElementById('typingIndicator'); if (el) el.remove(); }
 
         function getBotResponse(input) {
-            const lower = input.toLowerCase();
-            
-            if (lower.match(/\b(hi|hello|hey|namaste|good morning|good evening|good afternoon)\b/)) {
-                return "Hello! 😊 Great to have you here! I'm Ajay Gawde, a professional Web Designer & SEO Specialist. How can I assist you today? Feel free to ask me about my services, pricing, portfolio, or anything else!";
-            }
-            
-            if (lower.match(/\b(web design|website design|website|web development|design services|site design)\b/)) {
-                return `🎨 <strong>My Web Design Services:</strong><br><br>
-                    ✅ <strong>Responsive Web Design</strong> - Mobile-friendly websites<br>
-                    ✅ <strong>E-commerce Websites</strong> - Complete online stores<br>
-                    ✅ <strong>Corporate Websites</strong> - Professional business websites<br>
-                    ✅ <strong>Landing Pages</strong> - High-converting pages<br>
-                    ✅ <strong>WordPress Development</strong> - Custom themes & plugins<br>
-                    ✅ <strong>UI/UX Design</strong> - User-centered approach<br>
-                    ✅ <strong>Website Redesign</strong> - Modernizing existing sites<br><br>
-                    I've designed 45+ websites across various industries. Would you like to see my portfolio?`;
-            }
-            
-            if (lower.match(/\b(seo|search engine|seo services|search engine optimization|google ranking|seo optimization)\b/)) {
-                return `🔍 <strong>My SEO Services:</strong><br><br>
-                    ✅ <strong>On-Page SEO</strong> - Content & meta optimization<br>
-                    ✅ <strong>Technical SEO</strong> - Speed, mobile, schema<br>
-                    ✅ <strong>Off-Page SEO</strong> - Link building & citations<br>
-                    ✅ <strong>Local SEO</strong> - Google My Business<br>
-                    ✅ <strong>Keyword Research</strong> - Strategic targeting<br>
-                    ✅ <strong>SEO Audit</strong> - Complete analysis<br>
-                    ✅ <strong>Content Strategy</strong> - SEO content planning<br><br>
-                    I've worked on SEO for Mumbai Homes, Credit Mudra Finvest, and Vighnaharta Group.`;
-            }
-            
-            if (lower.match(/\b(price|pricing|cost|charges|fees|rate|budget|how much|package)\b/)) {
-                return `💰 <strong>Pricing Overview:</strong><br><br>
-                    📌 <strong>Basic Website</strong> - From ₹15,000<br>
-                    📌 <strong>Business Website</strong> - From ₹25,000<br>
-                    📌 <strong>E-commerce Website</strong> - From ₹40,000<br>
-                    📌 <strong>Custom Web App</strong> - From ₹60,000<br>
-                    📌 <strong>SEO Package</strong> - From ₹10,000/month<br>
-                    📌 <strong>Complete Package</strong> - Custom pricing<br><br>
-                    💡 Every project includes free consultation + 30 days support!`;
-            }
-            
-            if (lower.match(/\b(portfolio|work|projects|previous work|samples|examples)\b/)) {
-                return `📂 <strong>My Portfolio Highlights:</strong><br><br>
-                    🛍️ <strong>E-commerce:</strong> DailyObjects, BigSmall, Gifts By Rashi<br>
-                    💎 <strong>Jewelry:</strong> Kirtilals, Ranka Jewellers, Jaipur Rose<br>
-                    👗 <strong>Fashion:</strong> W For Woman, Mustard Fashion, Street9<br>
-                    🏢 <strong>Corporate:</strong> Credit Mudra Finvest, Stack Link US<br>
-                    🏠 <strong>SEO:</strong> Mumbai Homes, Vighnaharta Group<br><br>
-                    45+ live websites! Scroll up to the Portfolio section to see them all with live screenshots! 🚀`;
-            }
-            
-            if (lower.match(/\b(contact|phone|email|whatsapp|reach|connect|talk|call)\b/)) {
-                return `📞 <strong>Let's Connect!</strong><br><br>
-                    📱 <strong>WhatsApp:</strong> <a href="https://wa.me/919892671437" target="_blank" style="color:#6366f1;">+91 9892671437</a><br>
-                    📧 <strong>Email:</strong> ajaygawde434@gmail.com<br>
-                    📍 <strong>Location:</strong> Mumbai, Maharashtra<br><br>
-                    Use the green WhatsApp button (bottom-left) or fill the contact form above. I respond within 1-2 hours! ⚡`;
-            }
-            
-            if (lower.match(/\b(experience|years|background|qualification|expertise)\b/)) {
-                return `🏆 <strong>My Experience:</strong><br><br>
-                    📅 <strong>6+ Years</strong> in Web Design & Development<br>
-                    🌐 <strong>45+ Websites</strong> designed and deployed<br>
-                    📈 <strong>3+ SEO Projects</strong> with proven results<br>
-                    🎯 <strong>100%</strong> client satisfaction rate<br>
-                    📍 Based in <strong>Mumbai, Maharashtra</strong>`;
-            }
-            
-            if (lower.match(/\b(thank|thanks|thank you|thx|appreciate)\b/)) {
-                return "You're welcome! 😊 Feel free to ask anytime. Looking forward to working together! 🚀";
-            }
-            
-            if (lower.match(/\b(bye|goodbye|see you|later|talk later)\b/)) {
-                return "Goodbye! 👋 Don't hesitate to reach out whenever you need web design or SEO services. Have a wonderful day! 🌟";
-            }
-            
-            const defaultResponses = [
-                "That's a great question! 🤔 I specialize in <strong>web design</strong> and <strong>SEO services</strong>. You can reach me on <a href='https://wa.me/919892671437' target='_blank' style='color:#6366f1;'>WhatsApp</a> for a quick chat!",
-                "Interesting! 😊 Would you like to know about my <strong>services</strong>, <strong>pricing</strong>, or see my <strong>portfolio</strong>?",
-                "Thanks for your message! 💬 Feel free to ask about anything. You can also contact me on <a href='https://wa.me/919892671437' target='_blank' style='color:#6366f1;'>WhatsApp: +91 9892671437</a>"
-            ];
-            
-            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+            const l = input.toLowerCase();
+            if (l.match(/\b(hi|hello|hey|namaste)\b/)) return "Hello! 😊 I'm Ajay Gawde, Web Designer & SEO Specialist. How can I help you today?";
+            if (l.match(/\b(web design|website|design)\b/)) return "🎨 <strong>Web Design Services:</strong><br>✅ Responsive Design<br>✅ E-commerce Sites<br>✅ Corporate Websites<br>✅ Landing Pages<br>✅ WordPress<br>✅ UI/UX Design<br>✅ Website Redesign<br><br>45+ websites designed! Want to see my portfolio?";
+            if (l.match(/\b(seo|search engine)\b/)) return "🔍 <strong>SEO Services:</strong><br>✅ On-Page SEO<br>✅ Technical SEO<br>✅ Off-Page SEO<br>✅ Local SEO<br>✅ Keyword Research<br>✅ SEO Audit<br><br>Worked on Mumbai Homes, Credit Mudra Finvest & more!";
+            if (l.match(/\b(price|pricing|cost|how much)\b/)) return "💰 <strong>Pricing:</strong><br>📌 Basic Website - From ₹15,000<br>📌 Business Website - From ₹25,000<br>📌 E-commerce - From ₹40,000<br>📌 SEO Package - From ₹10,000/month<br><br>💡 Includes free consultation + 30 days support!";
+            if (l.match(/\b(portfolio|work|projects)\b/)) return "📂 <strong>Portfolio:</strong> 45+ live websites including DailyObjects, BigSmall, W For Woman, Kirtilals, and many more! Scroll up to see them all with live screenshots! 🚀";
+            if (l.match(/\b(contact|phone|email|whatsapp)\b/)) return "📞 <strong>Contact:</strong><br>📱 <a href='https://wa.me/919892671437' target='_blank' style='color:#6366f1;'>WhatsApp: +91 9892671437</a><br>📧 ajaygawde434@gmail.com<br>📍 Mumbai, Maharashtra";
+            if (l.match(/\b(thank|thanks)\b/)) return "You're welcome! 😊 Looking forward to working together! 🚀";
+            return "Thanks for your message! 💬 I specialize in <strong>web design</strong> and <strong>SEO</strong>. Reach me on <a href='https://wa.me/919892671437' target='_blank' style='color:#6366f1;'>WhatsApp</a> for a quick chat!";
         }
 
         function sendChatMessage() {
-            const message = chatInput.value.trim();
-            if (!message) return;
-            
-            addUserMessage(message);
-            chatInput.value = '';
-            
-            showTypingIndicator();
-            
-            const delay = 800 + Math.random() * 1200;
-            setTimeout(() => {
-                removeTypingIndicator();
-                const response = getBotResponse(message);
-                addBotMessage(response);
-            }, delay);
+            const msg = chatInput.value.trim(); if (!msg) return;
+            addUserMessage(msg); chatInput.value = ''; showTyping();
+            setTimeout(() => { removeTyping(); addBotMessage(getBotResponse(msg)); }, 800 + Math.random() * 800);
         }
 
-        function sendQuickMessage(message) {
-            addUserMessage(message);
-            
-            showTypingIndicator();
-            
-            const delay = 800 + Math.random() * 1200;
-            setTimeout(() => {
-                removeTypingIndicator();
-                const response = getBotResponse(message);
-                addBotMessage(response);
-            }, delay);
+        function sendQuickMessage(msg) {
+            addUserMessage(msg); showTyping();
+            setTimeout(() => { removeTyping(); addBotMessage(getBotResponse(msg)); }, 800 + Math.random() * 800);
         }
 
-        function handleChatKeypress(event) {
-            if (event.key === 'Enter') {
-                sendChatMessage();
-            }
-        }
+        function handleChatKeypress(e) { if (e.key === 'Enter') sendChatMessage(); }
+
+        window.toggleChat = toggleChat;
+        window.sendChatMessage = sendChatMessage;
+        window.sendQuickMessage = sendQuickMessage;
+        window.handleChatKeypress = handleChatKeypress;
     </script>
 </body>
 </html>
+
