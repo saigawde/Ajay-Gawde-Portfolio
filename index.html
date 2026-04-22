@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajay Vishnu Gawde | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; overflow-x: hidden; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            transform: scale(1.02);
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        .project-card:hover .project-name {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .project-overlay {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-name {
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn {
+            transition: all 0.3s ease;
+        }
+        .category-btn.active {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: #6366f1;
+            margin-left: 4px;
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        
+        .scroll-indicator {
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        
+        .pulse-dot {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+        }
+        
+        .section-title {
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 28px;
+        }
+        
+        @media (max-width: 768px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .website-preview {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+            background: #f1f5f9;
+        }
+        
+        .website-preview img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            object-position: top;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .website-preview img {
+            transform: scale(1.05);
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: rgba(5, 150, 105, 0.9);
+            color: white;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .live-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #6ee7b7;
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 100;
+            width: 64px;
+            height: 64px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            animation: whatsappPulse 2s ease-in-out infinite;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+        
+        @keyframes whatsappPulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7), 0 0 0 10px rgba(37, 211, 102, 0.1); }
+        }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+        }
+        
+        .chat-toggle {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(99, 102, 241, 0.6);
+        }
+        .chat-toggle.active {
+            transform: rotate(45deg);
+        }
+        
+        .chat-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 20px;
+            height: 20px;
+            background: #ef4444;
+            border-radius: 50%;
+            font-size: 11px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .chat-box {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 400px;
+            max-height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            animation: chatSlideUp 0.3s ease;
+        }
+        .chat-box.active {
+            display: flex;
+        }
+        
+        @keyframes chatSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            padding: 20px;
+            color: white;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            max-height: 400px;
+            scroll-behavior: smooth;
+        }
+        
+        .chat-message {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-message.bot { align-items: flex-start; }
+        .chat-message.user { align-items: flex-end; }
+        
+        .chat-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .chat-message.bot .chat-bubble {
+            background: #f1f5f9;
+            color: #1e293b;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .chat-message.user .chat-bubble {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .chat-time {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+        
+        .chat-input-area {
+            padding: 16px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .chat-input:focus { border-color: #6366f1; }
+        
+        .chat-send {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+        .chat-send:hover { transform: scale(1.1); }
+        
+        .chat-quick-btns {
+            padding: 0 16px 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .quick-btn {
+            padding: 6px 14px;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+            color: #6366f1;
+        }
+        .quick-btn:hover {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: #f1f5f9;
+            border-radius: 18px;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: typingBounce 1.4s ease-in-out infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+
+        @media (max-width: 480px) {
+            .chat-box {
+                width: calc(100vw - 40px);
+                right: -10px;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading skeleton for images */
+        .img-skeleton {
+            background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .browser-bar {
+            background: #e2e8f0;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .browser-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        .browser-url {
+            flex: 1;
+            background: white;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 11px;
+            color: #64748b;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-2xl font-bold">
+                <span class="gradient-text">AJ</span><span class="text-slate-800">ay</span><span class="text-slate-400">.</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="nav-link text-slate-600 hover:text-slate-900 transition-colors">Home</a>
+                <a href="#about" class="nav-link text-slate-600 hover:text-slate-900 transition-colors">About</a>
+                <a href="#portfolio" class="nav-link text-slate-600 hover:text-slate-900 transition-colors">Portfolio</a>
+                <a href="#seo" class="nav-link text-slate-600 hover:text-slate-900 transition-colors">SEO</a>
+                <a href="#contact" class="nav-link text-slate-600 hover:text-slate-900 transition-colors">Contact</a>
+            </div>
+            <button id="menuBtn" class="md:hidden text-slate-800">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-8" id="mobileMenu">
+        <button id="closeMenu" class="absolute top-6 right-6 text-slate-800">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        <a href="#home" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">Home</a>
+        <a href="#about" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">About</a>
+        <a href="#portfolio" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">Portfolio</a>
+        <a href="#seo" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">SEO</a>
+        <a href="#contact" class="mobile-link text-2xl text-slate-700 hover:text-slate-900 transition-colors">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 hero-gradient">
+        <div class="blob w-96 h-96 bg-purple-600 -top-48 -left-48"></div>
+        <div class="blob w-96 h-96 bg-indigo-600 top-1/2 -right-48"></div>
+        <div class="blob w-64 h-64 bg-pink-600 bottom-0 left-1/3"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <div class="floating">
+                <div class="inline-flex items-center gap-2 glass-dark rounded-full px-6 py-3 mb-8">
+                    <div class="w-2 h-2 bg-green-400 rounded-full pulse-dot"></div>
+                    <span class="text-gray-300 text-sm">Available for Projects</span>
+                </div>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-white hero-title">
+                Hi, I'm <span class="gradient-text">Ajay</span>
+            </h1>
+            
+            <div class="text-2xl md:text-4xl font-light mb-8 text-gray-300 hero-subtitle">
+                <span class="text-white" id="typingText"></span><span class="typing-cursor"></span>
+            </div>
+            
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-12 hero-desc">
+                Crafting digital experiences through stunning web design & powerful SEO strategies. 
+                <span class="text-white font-semibold">6+ Years</span> of turning ideas into live websites.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 hero-buttons">
+                <a href="#portfolio" class="btn-gradient px-8 py-4 rounded-full font-semibold text-lg text-white hover:shadow-lg hover:shadow-purple-500/25 transition-all">
+                    View My Work →
+                </a>
+                <a href="#contact" class="px-8 py-4 rounded-full font-semibold text-lg glass-dark hover:bg-slate-800/50 transition-all text-white">
+                    Get In Touch
+                </a>
+            </div>
+            
+            <div class="mt-20 scroll-indicator">
+                <svg class="w-6 h-6 mx-auto text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="stat-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">6+</div>
+                    <div class="text-slate-500 text-sm">Years Experience</div>
+                </div>
+                <div class="stat-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">45+</div>
+                    <div class="text-slate-500 text-sm">Websites Designed</div>
+                </div>
+                <div class="stat-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">3+</div>
+                    <div class="text-slate-500 text-sm">SEO Projects</div>
+                </div>
+                <div class="stat-card rounded-2xl p-6 text-center card-hover">
+                    <div class="text-4xl md:text-5xl font-bold gradient-text mb-2">100%</div>
+                    <div class="text-slate-500 text-sm">Client Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 section-title">
+                        About <span class="gradient-text">Me</span>
+                    </h2>
+                    <p class="text-slate-600 text-lg mb-6 leading-relaxed">
+                        I'm <strong class="text-slate-900">Ajay Vishnu Gawde</strong>, a passionate web designer and SEO specialist based in <strong class="text-slate-900">Mumbai, Maharashtra</strong>. With over <strong class="text-slate-900">6+ years</strong> of professional experience, I specialize in creating visually stunning websites that drive results.
+                    </p>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        My expertise spans across modern web design, responsive layouts, user experience optimization, and search engine optimization. I believe in crafting digital solutions that not only look beautiful but also perform exceptionally well.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 rounded-full text-sm bg-indigo-50 text-indigo-700 border border-indigo-100">Web Design</span>
+                        <span class="px-4 py-2 rounded-full text-sm bg-purple-50 text-purple-700 border border-purple-100">SEO Optimization</span>
+                        <span class="px-4 py-2 rounded-full text-sm bg-blue-50 text-blue-700 border border-blue-100">Responsive Design</span>
+                        <span class="px-4 py-2 rounded-full text-sm bg-pink-50 text-pink-700 border border-pink-100">UI/UX</span>
+                        <span class="px-4 py-2 rounded-full text-sm bg-green-50 text-green-700 border border-green-100">WordPress</span>
+                        <span class="px-4 py-2 rounded-full text-sm bg-orange-50 text-orange-700 border border-orange-100">E-commerce</span>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-white rounded-3xl p-8 shadow-lg relative z-10">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-4">
+                                    <div class="text-3xl font-bold gradient-text mb-1">45+</div>
+                                    <div class="text-slate-500 text-xs">Projects</div>
+                                </div>
+                                <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-4">
+                                    <div class="text-3xl font-bold text-blue-600 mb-1">6+</div>
+                                    <div class="text-slate-500 text-xs">Years</div>
+                                </div>
+                            </div>
+                            <div class="space-y-4 pt-8">
+                                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-4">
+                                    <div class="text-3xl font-bold text-pink-600 mb-1">100%</div>
+                                    <div class="text-slate-500 text-xs">Dedicated</div>
+                                </div>
+                                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4">
+                                    <div class="text-3xl font-bold text-green-600 mb-1">24/7</div>
+                                    <div class="text-slate-500 text-xs">Support</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <div class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-indigo-50 border border-indigo-100">
+                                <span class="w-3 h-3 bg-green-400 rounded-full pulse-dot"></span>
+                                <span class="text-sm text-indigo-700">Open for new opportunities</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-indigo-100 to-purple-100 rounded-3xl -z-0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 section-title">
+                    My <span class="gradient-text">Portfolio</span>
+                </h2>
+                <p class="text-slate-600 text-lg max-w-2xl mx-auto">
+                    A showcase of 45+ websites I've designed and developed for clients across various industries
+                </p>
+            </div>
+            
+            <!-- Category Filter -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button class="category-btn active px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="all">All Projects</button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="ecommerce">E-commerce</button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="fashion">Fashion</button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="jewelry">Jewelry</button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="corporate">Corporate</button>
+                <button class="category-btn px-6 py-3 rounded-full text-sm font-medium bg-slate-100 text-slate-600" data-category="other">Other</button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="project-grid" id="portfolioGrid"></div>
+        </div>
+    </section>
+
+    <!-- SEO Work -->
+    <section id="seo" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 section-title">
+                    SEO <span class="gradient-text">Projects</span>
+                </h2>
+                <p class="text-slate-600 text-lg max-w-2xl mx-auto">
+                    Strategic SEO optimization projects that drive organic traffic and improve search rankings
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8" id="seoGrid"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 section-title">
+                    What I <span class="gradient-text">Do</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-3xl p-8 card-hover shadow-md border border-slate-100 group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Web Design</h3>
+                    <p class="text-slate-500">Creating modern, responsive websites with clean code and beautiful interfaces that engage visitors.</p>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 card-hover shadow-md border border-slate-100 group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-600 to-teal-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">SEO Optimization</h3>
+                    <p class="text-slate-500">Improving search engine rankings through strategic keyword optimization and technical SEO practices.</p>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-8 card-hover shadow-md border border-slate-100 group">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">UI/UX Design</h3>
+                    <p class="text-slate-500">Designing intuitive user interfaces with focus on user experience, accessibility, and conversion optimization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="bg-white rounded-3xl shadow-lg p-8 md:p-16 relative overflow-hidden">
+                <div class="blob w-64 h-64 bg-purple-600 -top-32 -right-32 opacity-10"></div>
+                
+                <div class="grid md:grid-cols-2 gap-12 relative z-10">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                            Let's <span class="gradient-text">Connect</span>
+                        </h2>
+                        <p class="text-slate-600 text-lg mb-8">
+                            Have a project in mind? Let's discuss how I can help bring your vision to life with stunning web design and effective SEO strategies.
+                        </p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-slate-500">Name</div>
+                                    <div class="text-slate-900 font-medium">Ajay Vishnu Gawde</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-slate-500">Address</div>
+                                    <div class="text-slate-900 font-medium text-sm">Provident Palm Vista, Shilphata Junction,<br>Kalyan - Shilphata Road, Daighar Gaon,<br>Mumbai, Maharashtra - 421204</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-indigo-50 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-slate-500">Experience</div>
+                                    <div class="text-slate-900 font-medium">6+ Years in Web Design & SEO</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <form class="space-y-4" action="https://formsubmit.co/ajaygawde434@gmail.com" method="POST" id="contactForm">
+                            <input type="hidden" name="_subject" value="New Lead from Portfolio Website">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="#">
+                            <input type="text" name="_honey" style="display:none">
+                            <div>
+                                <label class="block text-sm text-slate-600 mb-2">Your Name</label>
+                                <input type="text" name="name" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 outline-none transition-colors text-slate-900" placeholder="Enter your name" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-slate-600 mb-2">Email Address</label>
+                                <input type="email" name="email" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 outline-none transition-colors text-slate-900" placeholder="Enter your email" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-slate-600 mb-2">Phone Number</label>
+                                <input type="tel" name="phone" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 outline-none transition-colors text-slate-900" placeholder="Enter your phone number">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-slate-600 mb-2">Service Interested In</label>
+                                <select name="service" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 outline-none transition-colors text-slate-900">
+                                    <option value="">Select a service</option>
+                                    <option value="Website Design">Website Design</option>
+                                    <option value="SEO Optimization">SEO Optimization</option>
+                                    <option value="UI/UX Design">UI/UX Design</option>
+                                    <option value="Complete Package">Complete Package (Design + SEO)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-slate-600 mb-2">Message</label>
+                                <textarea name="message" rows="4" class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-indigo-500 outline-none transition-colors text-slate-900 resize-none" placeholder="Tell me about your project..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full px-8 py-4 rounded-xl font-semibold text-lg btn-gradient text-white hover:shadow-lg hover:shadow-purple-500/25 transition-all">
+                                Send Message →
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="text-2xl font-bold">
+                    <span class="gradient-text">AJ</span><span>ay</span><span class="text-gray-400">.</span>
+                </div>
+                <p class="text-gray-400 text-sm">© 2025 Ajay Vishnu Gawde. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#home" class="text-gray-400 hover:text-white transition-colors">Back to top ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919892671437?text=Hi%20Ajay!%20I%20saw%20your%20portfolio%20and%20I'm%20interested%20in%20your%20web%20design%20%26%20SEO%20services.%20Can%20we%20discuss?" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- Live Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">Ajay Gawde</h3>
+                        <p class="text-sm text-white/70 flex items-center gap-1">
+                            <span class="w-2 h-2 bg-green-400 rounded-full inline-block"></span>
+                            Online | Web Design & SEO Expert
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages"></div>
+            
+            <div class="chat-quick-btns" id="quickBtns">
+                <button class="quick-btn" onclick="sendQuickMessage('Tell me about your web design services')">Web Design Services</button>
+                <button class="quick-btn" onclick="sendQuickMessage('What are your SEO services?')">SEO Services</button>
+                <button class="quick-btn" onclick="sendQuickMessage('What is your pricing?')">Pricing</button>
+                <button class="quick-btn" onclick="sendQuickMessage('Can I see your portfolio?')">Portfolio</button>
+                <button class="quick-btn" onclick="sendQuickMessage('How can I contact you?')">Contact Info</button>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeypress(event)">
+                <button class="chat-send" onclick="sendChatMessage()">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <div class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+            <span class="chat-badge" id="chatBadge">1</span>
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        // Screenshot API - captures real website screenshots
+        function getScreenshotUrl(websiteUrl) {
+            // Using thum.io for real website screenshots
+            const encoded = encodeURIComponent(websiteUrl);
+            return `https://image.thum.io/get/width/800/crop/500/maxAge/72/noanimate/${websiteUrl}`;
+        }
+
+        // Project Data
+        const portfolioProjects = [
+            // E-commerce
+            { name: "Gifts By Rashi", url: "https://giftsbyrashi.com/", category: "ecommerce" },
+            { name: "Momentz", url: "https://momentz.in/", category: "ecommerce" },
+            { name: "Ouch Cart", url: "https://ouchcart.com/", category: "ecommerce" },
+            { name: "BigSmall", url: "https://www.bigsmall.in/", category: "ecommerce" },
+            { name: "Dirums", url: "https://dirums.com/", category: "ecommerce" },
+            { name: "Fanusta", url: "https://www.fanusta.com/", category: "ecommerce" },
+            { name: "Jaipri", url: "https://jaipri.com/", category: "ecommerce" },
+            { name: "Red Horn", url: "https://redhorn.in/", category: "ecommerce" },
+            
+            // Fashion
+            { name: "Street 9", url: "https://street9.com/", category: "fashion" },
+            { name: "The Luxury Florett", url: "https://www.theluxuryflorett.com/", category: "fashion" },
+            { name: "Zari Banaras", url: "https://zaribanaras.com/", category: "fashion" },
+            { name: "W For Woman", url: "https://wforwoman.com/", category: "fashion" },
+            { name: "Mustard Fashion", url: "https://www.mustardfashion.com/", category: "fashion" },
+            { name: "Swastik Clothing", url: "https://swasticlothing.com/", category: "fashion" },
+            { name: "Exclusive Lane", url: "https://exclusivelane.com/", category: "fashion" },
+            { name: "Katt Walk", url: "https://kattwalk.co.in/", category: "fashion" },
+            { name: "Sindoori", url: "https://sindoori.co.in/", category: "fashion" },
+            { name: "Label Monarv", url: "https://labelmonarv.in/", category: "fashion" },
+            
+            // Jewelry
+            { name: "Kirtilals", url: "https://www.kirtilals.com/", category: "jewelry" },
+            { name: "Ranka Jewellers", url: "https://rankajewellers.in/", category: "jewelry" },
+            { name: "Jaipur Rose", url: "https://www.jaipurrose.com/", category: "jewelry" },
+            
+            // Corporate
+            { name: "Credit Mudra Finvest", url: "https://creditmudrafinvest.com/", category: "corporate" },
+            { name: "Stack Link US", url: "https://stacklinkus.com/", category: "corporate" },
+            { name: "SLINK LLC", url: "https://slinkllc.com/", category: "corporate" },
+            { name: "RMX CCTV", url: "https://rmxcctv.com/", category: "corporate" },
+            { name: "Olympia Worlds", url: "https://olympiaworlds.com/", category: "corporate" },
+            
+            // Other
+            { name: "DailyObjects", url: "https://www.dailyobjects.com/", category: "other" },
+            { name: "Home N Honey", url: "https://homenhoney.com/", category: "other" },
+            { name: "EVOK", url: "https://www.evok.in/", category: "other" },
+            { name: "My Pooja Box", url: "https://www.mypoojabox.in/", category: "other" },
+            { name: "Khoj Crafts", url: "https://khojcrafts.com/", category: "other" },
+            { name: "Pune Bakers", url: "https://www.punebakers.com/", category: "other" },
+            { name: "Million Cases", url: "https://millioncases.com/", category: "other" },
+            { name: "Pop It Out", url: "https://popitout.in/", category: "other" },
+            { name: "Atar Story", url: "https://atarstory.com/", category: "other" },
+            { name: "D Nature India", url: "https://dnatureindia.com/", category: "other" },
+            { name: "Miomio Personal", url: "https://miomiopersonal.com/", category: "other" },
+            { name: "Kalopsia Radiance", url: "https://kalopsiaradiance.in/", category: "other" },
+            { name: "Sundrip Eyewear", url: "https://sundripeyewear.com/", category: "other" },
+            { name: "Suti Online", url: "https://www.sutionline.com/", category: "other" },
+            { name: "Cotton Village", url: "https://cottonvillage.in/", category: "other" },
+            { name: "Pisarto", url: "https://www.pisarto.com/", category: "other" },
+            { name: "Vedansh Craft", url: "https://vedanshcraft.com/", category: "other" },
+            { name: "Itsy Bitsy", url: "https://itsybitsy.in/", category: "other" },
+            { name: "Blooms Villa", url: "https://www.bloomsvilla.com/", category: "other" },
+            { name: "You Know Better", url: "https://www.youknowbetterr.com/", category: "other" },
+            { name: "Artisans Rose", url: "https://www.artisansrose.com/", category: "other" }
+        ];
+
+        // SEO Projects
+        const seoProjects = [
+            { name: "Mumbai Homes", url: "https://mumbaihomes.com/", type: "Real Estate SEO" },
+            { name: "Credit Mudra Finvest", url: "https://creditmudrafinvest.com/", type: "Finance SEO" },
+            { name: "Vighnaharta Group", url: "https://vighnaharta-group.com/", type: "Corporate SEO" }
+        ];
+
+        // Render Portfolio Projects
+        const portfolioGrid = document.getElementById('portfolioGrid');
+        const uniqueProjects = [...new Map(portfolioProjects.map(p => [p.url, p])).values()];
+        
+        function renderProjects(projects) {
+            portfolioGrid.innerHTML = '';
+            projects.forEach((project) => {
+                const screenshotUrl = getScreenshotUrl(project.url);
+                const card = document.createElement('a');
+                card.href = project.url;
+                card.target = '_blank';
+                card.className = 'project-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl card-hover';
+                card.innerHTML = `
+                    <div class="browser-bar">
+                        <div class="browser-dot bg-red-400"></div>
+                        <div class="browser-dot bg-yellow-400"></div>
+                        <div class="browser-dot bg-green-400"></div>
+                        <div class="browser-url">${project.url}</div>
+                    </div>
+                    <div class="website-preview relative">
+                        <div class="img-skeleton" style="position:absolute;inset:0;z-index:1;height:220px;"></div>
+                        <img src="${screenshotUrl}" alt="${project.name} website" loading="lazy" 
+                             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                             onload="this.previousElementSibling.style.display='none';">
+                        <div style="display:none;width:100%;height:220px;align-items:center;justify-content:center;background:#f1f5f9;flex-direction:column;gap:8px;">
+                            <svg class="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                            </svg>
+                            <span class="text-slate-400 text-sm">Click to visit live website</span>
+                        </div>
+                        <div class="project-overlay absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent flex items-end p-6">
+                            <div class="project-name text-white">
+                                <h3 class="text-xl font-bold mb-1">${project.name}</h3>
+                                <p class="text-gray-300 text-sm">Click to visit live website →</p>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 right-3">
+                            <span class="live-badge">● LIVE</span>
+                        </div>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 font-medium">${project.category.charAt(0).toUpperCase() + project.category.slice(1)}</span>
+                            <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-1">${project.name}</h3>
+                        <p class="text-slate-500 text-sm truncate">${project.url}</p>
+                    </div>
+                `;
+                portfolioGrid.appendChild(card);
+            });
+        }
+        
+        renderProjects(uniqueProjects);
+        
+        // Render SEO Projects
+        const seoGrid = document.getElementById('seoGrid');
+        seoProjects.forEach((project) => {
+            const screenshotUrl = getScreenshotUrl(project.url);
+            const card = document.createElement('a');
+            card.href = project.url;
+            card.target = '_blank';
+            card.className = 'project-card bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl';
+            card.innerHTML = `
+                <div class="browser-bar">
+                    <div class="browser-dot bg-red-400"></div>
+                    <div class="browser-dot bg-yellow-400"></div>
+                    <div class="browser-dot bg-green-400"></div>
+                    <div class="browser-url">${project.url}</div>
+                </div>
+                <div class="website-preview relative">
+                    <div class="img-skeleton" style="position:absolute;inset:0;z-index:1;height:220px;"></div>
+                    <img src="${screenshotUrl}" alt="${project.name}" loading="lazy"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                         onload="this.previousElementSibling.style.display='none';">
+                    <div style="display:none;width:100%;height:220px;align-items:center;justify-content:center;background:#f1f5f9;flex-direction:column;gap:8px;">
+                        <svg class="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <span class="text-slate-400 text-sm">SEO Project</span>
+                    </div>
+                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent flex items-end p-6">
+                        <div class="project-name text-white">
+                            <h3 class="text-xl font-bold mb-1">${project.name}</h3>
+                            <p class="text-gray-300 text-sm">${project.type} Project</p>
+                        </div>
+                    </div>
+                    <div class="absolute top-3 right-3">
+                        <span class="live-badge">● LIVE</span>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs px-3 py-1 rounded-full bg-green-50 text-green-700 border border-green-100 font-medium">${project.type}</span>
+                        <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-1">${project.name}</h3>
+                    <p class="text-slate-500 text-sm truncate">${project.url}</p>
+                </div>
+            `;
+            seoGrid.appendChild(card);
+        });
+        
+        // Category Filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                if (category === 'all') {
+                    renderProjects(uniqueProjects);
+                } else {
+                    const filtered = uniqueProjects.filter(p => p.category === category);
+                    renderProjects(filtered);
+                }
+            });
+        });
+
+        // Typing Effect
+        const typingTexts = ['Web Designer', 'SEO Specialist', 'UI/UX Designer', 'Freelancer'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typingText');
+
+        function typeText() {
+            const currentText = typingTexts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % typingTexts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeText, typeSpeed);
+        }
+
+        typeText();
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => { mobileMenu.classList.add('active'); });
+        closeMenu.addEventListener('click', () => { mobileMenu.classList.remove('active'); });
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => { mobileMenu.classList.remove('active'); });
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from('.hero-title', { opacity: 0, y: 60, duration: 1.2, ease: 'power3.out' });
+        gsap.from('.hero-subtitle', { opacity: 0, y: 40, duration: 1, delay: 0.3, ease: 'power3.out' });
+        gsap.from('.hero-desc', { opacity: 0, y: 30, duration: 1, delay: 0.5, ease: 'power3.out' });
+        gsap.from('.hero-buttons', { opacity: 0, y: 20, duration: 1, delay: 0.7, ease: 'power3.out' });
+
+        gsap.utils.toArray('.project-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: { trigger: card, start: 'top 85%' },
+                opacity: 0, y: 30, duration: 0.6, delay: (i % 3) * 0.1, ease: 'power3.out'
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Active nav link
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-slate-900');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-slate-900');
+                }
+            });
+        });
+
+        // ============================================
+        // CHATBOT FUNCTIONALITY
+        // ============================================
+        
+        let chatOpen = false;
+        const chatBox = document.getElementById('chatBox');
+        const chatToggle = document.getElementById('chatToggle');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatBadge = document.getElementById('chatBadge');
+        let messageCount = 0;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            chatBox.classList.toggle('active');
+            chatToggle.classList.toggle('active');
+            
+            if (chatOpen) {
+                chatBadge.style.display = 'none';
+                if (messageCount === 0) {
+                    setTimeout(() => {
+                        addBotMessage("Hi there! 👋 Welcome to my portfolio. I'm Ajay Gawde, a Web Designer & SEO Specialist based in Mumbai.");
+                        setTimeout(() => {
+                            addBotMessage("I have 6+ years of experience and have designed 45+ websites. How can I help you today?");
+                        }, 1000);
+                    }, 500);
+                    messageCount = 2;
+                }
+                chatInput.focus();
+            }
+        }
+
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+        }
+
+        function addBotMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message bot';
+            messageDiv.innerHTML = `
+                <div class="chat-bubble">${text}</div>
+                <span class="chat-time">${getCurrentTime()}</span>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function addUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message user';
+            messageDiv.innerHTML = `
+                <div class="chat-bubble">${text}</div>
+                <span class="chat-time">${getCurrentTime()}</span>
+            `;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-message bot';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) indicator.remove();
+        }
+
+        function getBotResponse(input) {
+            const lower = input.toLowerCase();
+            
+            if (lower.match(/\b(hi|hello|hey|namaste|good morning|good evening|good afternoon)\b/)) {
+                return "Hello! 😊 Great to have you here! I'm Ajay Gawde, a professional Web Designer & SEO Specialist. How can I assist you today? Feel free to ask me about my services, pricing, portfolio, or anything else!";
+            }
+            
+            if (lower.match(/\b(web design|website design|website|web development|design services|site design)\b/)) {
+                return `🎨 <strong>My Web Design Services:</strong><br><br>
+                    ✅ <strong>Responsive Web Design</strong> - Mobile-friendly websites<br>
+                    ✅ <strong>E-commerce Websites</strong> - Complete online stores<br>
+                    ✅ <strong>Corporate Websites</strong> - Professional business websites<br>
+                    ✅ <strong>Landing Pages</strong> - High-converting pages<br>
+                    ✅ <strong>WordPress Development</strong> - Custom themes & plugins<br>
+                    ✅ <strong>UI/UX Design</strong> - User-centered approach<br>
+                    ✅ <strong>Website Redesign</strong> - Modernizing existing sites<br><br>
+                    I've designed 45+ websites across various industries. Would you like to see my portfolio?`;
+            }
+            
+            if (lower.match(/\b(seo|search engine|seo services|search engine optimization|google ranking|seo optimization)\b/)) {
+                return `🔍 <strong>My SEO Services:</strong><br><br>
+                    ✅ <strong>On-Page SEO</strong> - Content & meta optimization<br>
+                    ✅ <strong>Technical SEO</strong> - Speed, mobile, schema<br>
+                    ✅ <strong>Off-Page SEO</strong> - Link building & citations<br>
+                    ✅ <strong>Local SEO</strong> - Google My Business<br>
+                    ✅ <strong>Keyword Research</strong> - Strategic targeting<br>
+                    ✅ <strong>SEO Audit</strong> - Complete analysis<br>
+                    ✅ <strong>Content Strategy</strong> - SEO content planning<br><br>
+                    I've worked on SEO for Mumbai Homes, Credit Mudra Finvest, and Vighnaharta Group.`;
+            }
+            
+            if (lower.match(/\b(price|pricing|cost|charges|fees|rate|budget|how much|package)\b/)) {
+                return `💰 <strong>Pricing Overview:</strong><br><br>
+                    📌 <strong>Basic Website</strong> - From ₹15,000<br>
+                    📌 <strong>Business Website</strong> - From ₹25,000<br>
+                    📌 <strong>E-commerce Website</strong> - From ₹40,000<br>
+                    📌 <strong>Custom Web App</strong> - From ₹60,000<br>
+                    📌 <strong>SEO Package</strong> - From ₹10,000/month<br>
+                    📌 <strong>Complete Package</strong> - Custom pricing<br><br>
+                    💡 Every project includes free consultation + 30 days support!`;
+            }
+            
+            if (lower.match(/\b(portfolio|work|projects|previous work|samples|examples)\b/)) {
+                return `📂 <strong>My Portfolio Highlights:</strong><br><br>
+                    🛍️ <strong>E-commerce:</strong> DailyObjects, BigSmall, Gifts By Rashi<br>
+                    💎 <strong>Jewelry:</strong> Kirtilals, Ranka Jewellers, Jaipur Rose<br>
+                    👗 <strong>Fashion:</strong> W For Woman, Mustard Fashion, Street9<br>
+                    🏢 <strong>Corporate:</strong> Credit Mudra Finvest, Stack Link US<br>
+                    🏠 <strong>SEO:</strong> Mumbai Homes, Vighnaharta Group<br><br>
+                    45+ live websites! Scroll up to the Portfolio section to see them all with live screenshots! 🚀`;
+            }
+            
+            if (lower.match(/\b(contact|phone|email|whatsapp|reach|connect|talk|call)\b/)) {
+                return `📞 <strong>Let's Connect!</strong><br><br>
+                    📱 <strong>WhatsApp:</strong> <a href="https://wa.me/919892671437" target="_blank" style="color:#6366f1;">+91 9892671437</a><br>
+                    📧 <strong>Email:</strong> ajaygawde434@gmail.com<br>
+                    📍 <strong>Location:</strong> Mumbai, Maharashtra<br><br>
+                    Use the green WhatsApp button (bottom-left) or fill the contact form above. I respond within 1-2 hours! ⚡`;
+            }
+            
+            if (lower.match(/\b(experience|years|background|qualification|expertise)\b/)) {
+                return `🏆 <strong>My Experience:</strong><br><br>
+                    📅 <strong>6+ Years</strong> in Web Design & Development<br>
+                    🌐 <strong>45+ Websites</strong> designed and deployed<br>
+                    📈 <strong>3+ SEO Projects</strong> with proven results<br>
+                    🎯 <strong>100%</strong> client satisfaction rate<br>
+                    📍 Based in <strong>Mumbai, Maharashtra</strong>`;
+            }
+            
+            if (lower.match(/\b(thank|thanks|thank you|thx|appreciate)\b/)) {
+                return "You're welcome! 😊 Feel free to ask anytime. Looking forward to working together! 🚀";
+            }
+            
+            if (lower.match(/\b(bye|goodbye|see you|later|talk later)\b/)) {
+                return "Goodbye! 👋 Don't hesitate to reach out whenever you need web design or SEO services. Have a wonderful day! 🌟";
+            }
+            
+            const defaultResponses = [
+                "That's a great question! 🤔 I specialize in <strong>web design</strong> and <strong>SEO services</strong>. You can reach me on <a href='https://wa.me/919892671437' target='_blank' style='color:#6366f1;'>WhatsApp</a> for a quick chat!",
+                "Interesting! 😊 Would you like to know about my <strong>services</strong>, <strong>pricing</strong>, or see my <strong>portfolio</strong>?",
+                "Thanks for your message! 💬 Feel free to ask about anything. You can also contact me on <a href='https://wa.me/919892671437' target='_blank' style='color:#6366f1;'>WhatsApp: +91 9892671437</a>"
+            ];
+            
+            return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+        }
+
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            addUserMessage(message);
+            chatInput.value = '';
+            
+            showTypingIndicator();
+            
+            const delay = 800 + Math.random() * 1200;
+            setTimeout(() => {
+                removeTypingIndicator();
+                const response = getBotResponse(message);
+                addBotMessage(response);
+            }, delay);
+        }
+
+        function sendQuickMessage(message) {
+            addUserMessage(message);
+            
+            showTypingIndicator();
+            
+            const delay = 800 + Math.random() * 1200;
+            setTimeout(() => {
+                removeTypingIndicator();
+                const response = getBotResponse(message);
+                addBotMessage(response);
+            }, delay);
+        }
+
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+    </script>
+</body>
+</html>
